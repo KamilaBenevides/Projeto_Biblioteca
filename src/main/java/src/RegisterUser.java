@@ -5,16 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RegisterUser extends JFrame implements ActionListener
+public class RegisterUser extends JFrame
 {
-    private String nameUser, institution;
-    private int idUser, numberBook;
-    private double fines;
-
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        new RegisterUser();
-    }
+    private String registerArq;
+    private String nameUser, institution, numberBook, fines;
+    private static int sequence = 1, idUser;
 
     JTextField fieldUser = new JTextField(10);
     JTextField fieldId = new JTextField(10);
@@ -39,11 +34,8 @@ public class RegisterUser extends JFrame implements ActionListener
         setVisible(true);
 
         //Posições - pos horizontal, pos vertical, largura, altura
-        textUser.setBounds(100,170,120,30);
-        fieldUser.setBounds(210,170,120,30);
-
-        textId.setBounds(100,200,120,30);
-        fieldId.setBounds(210,200,120,30);
+        textUser.setBounds(100,200,120,30);
+        fieldUser.setBounds(210,200,120,30);
 
         textInstitution.setBounds(100,230,120,30);
         fieldInstitution.setBounds(200,230,120,30);
@@ -52,8 +44,6 @@ public class RegisterUser extends JFrame implements ActionListener
 
         add(textUser);
         add(fieldUser);
-        add(textId);
-        add(fieldId);
         add(textInstitution);
         add(fieldInstitution);
         add(buttonInput);
@@ -62,11 +52,20 @@ public class RegisterUser extends JFrame implements ActionListener
             @Override
             public void actionPerformed(ActionEvent e) {
                 setNameUser(fieldUser.getText());
-                int n = Integer.parseInt(fieldId.getText());
-                setIdUser(n);
+                setIdUser(sequence++);
                 setInstitution(fieldInstitution.getText());
+                register();
             }
         });
+    }
+    public void register()
+    {
+        registerArq = "/"+getNameUser()+"/"+getInstitution()+"/"+"/"+"/";
+        if(DataManipulation.Write("/home/kamila/IdeaProjects/Biblioteca/src/main/java/Banco/RegisterUser.txt", registerArq))
+            System.out.println("deu ceto");
+        else
+            System.out.println("falhou");
+        new Menu();
     }
 
     public String getNameUser() {
@@ -93,19 +92,19 @@ public class RegisterUser extends JFrame implements ActionListener
         this.idUser = idUser;
     }
 
-    public int getNumberBook() {
+    public String getNumberBook() {
         return numberBook;
     }
 
-    public void setNumberBook(int numberBook) {
+    public void setNumberBook(String numberBook) {
         this.numberBook = numberBook;
     }
 
-    public double getFines() {
+    public String getFines() {
         return fines;
     }
 
-    public void setFines(double fines) {
+    public void setFines(String fines) {
         this.fines = fines;
     }
 

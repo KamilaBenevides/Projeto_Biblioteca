@@ -3,15 +3,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
-    public class Menu extends JFrame implements ActionListener
+public class Menu extends JFrame implements ActionListener
     {
-        RegisterBook cadastroLivro = new RegisterBook();
-        RegisterUser registerUser = new RegisterUser();
-        LoanBook loanBook = new LoanBook();
-        UserSituation userSituation = new UserSituation();
+        RegisterBook registerBook;
+        RegisterUser registerUser;
+        LoanBook loanBook;
+        UserSituation userSituation;
+
         Font fonte = new Font("verdana", Font.BOLD, 15);
-        Font fonte2 = new Font("verdana", Font.BOLD, 40);
         JButton buttonUser = new JButton("Cadastrar Usuário");
         JButton buttonRegisterBook = new JButton("Cadastrar Livro");
         JButton buttonBorrowBook = new JButton("Emprestimo de Livro");
@@ -20,15 +21,13 @@ import java.awt.event.ActionListener;
 
         public Menu()
         {
-            // layout para a janela
-            setLayout(new FlowLayout());
-
-            //onde o botão vai ser executado
-            buttonUser.addActionListener(registerUser);
-            buttonRegisterBook.addActionListener(cadastroLivro);
-            buttonBorrowBook.addActionListener(loanBook);
-            buttonSituation.addActionListener(userSituation);
-            buttonExit.addActionListener(this);
+            //String g = DataManipulation.Read();
+            //Config das janelas
+            setTitle("Sistema de Biblioteca");
+            setSize(600, 500);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setLocationRelativeTo(null);
+            setVisible(true);
 
             //configuração de Layout
             setLayout(null);
@@ -53,12 +52,33 @@ import java.awt.event.ActionListener;
             add(buttonSituation);
             add(buttonExit);
 
-            // Config das janelas
-            setTitle("Sistema de Biblioteca");
-            setSize(600, 500);
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setLocationRelativeTo(null);
-            setVisible(true);
+            //onde o botão vai ser executado
+
+            buttonUser.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    registerUser = new RegisterUser();
+                }
+            });
+            buttonRegisterBook.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    registerBook = new RegisterBook();
+                }
+            });
+            buttonBorrowBook.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    loanBook = new LoanBook();
+                }
+            });
+            buttonSituation.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    userSituation = new UserSituation();
+                }
+            });
+            buttonExit.addActionListener(this);
 
         }
         public static void main(String[] args)

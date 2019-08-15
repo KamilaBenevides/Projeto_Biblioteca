@@ -1,0 +1,2 @@
+idBook/nameBook/author/edition/publication/category/copies
+002/stwart/calculo1/9/sao paulo,2013/morte/3

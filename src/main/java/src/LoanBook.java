@@ -4,16 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
-public class LoanBook extends JFrame implements ActionListener
+public class LoanBook extends JFrame
 {
-    private String loanDate, returnDate;
-    private int idBook, idUser;
-
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        new LoanBook();
-    }
+    private String registerArq;
+    private String idBook, idUser, loanDate, returnDate;
 
     JTextField fieldLoanDate = new JTextField(10);
     JTextField fieldReturnDate = new JTextField(10);
@@ -28,8 +24,7 @@ public class LoanBook extends JFrame implements ActionListener
     JButton buttonInput = new JButton("Finalizar");
 
     Font fonte = new Font("Arial", Font.BOLD, 20);
-    public LoanBook()
-    {
+    public LoanBook() {
         // Config das janelas
         setLayout(null);
         setTitle("Sistema de Biblioteca");
@@ -39,19 +34,19 @@ public class LoanBook extends JFrame implements ActionListener
         setVisible(true);
 
         //Posições - pos horizontal, pos vertical, largura, altura
-        textLoanDate.setBounds(100,170,120,30);
-        fieldLoanDate.setBounds(210,170,120,30);
+        textLoanDate.setBounds(100, 170, 120, 30);
+        fieldLoanDate.setBounds(210, 170, 120, 30);
 
-        textReturnDate.setBounds(100,200,120,30);
-        fieldReturnDate.setBounds(210,200,120,30);
+        textReturnDate.setBounds(100, 200, 120, 30);
+        fieldReturnDate.setBounds(210, 200, 120, 30);
 
-        textIdBook.setBounds(100,230,120,30);
-        fieldIdBook.setBounds(200,230,120,30);
+        textIdBook.setBounds(100, 230, 120, 30);
+        fieldIdBook.setBounds(200, 230, 120, 30);
 
-        textIdUser.setBounds(100,230,140,30);
-        fieldIdUser.setBounds(200,230,140,30);
+        textIdUser.setBounds(100, 230, 140, 30);
+        fieldIdUser.setBounds(200, 230, 140, 30);
 
-        buttonInput.setBounds(200,350,210,30);
+        buttonInput.setBounds(200, 350, 210, 30);
 
         add(textLoanDate);
         add(fieldLoanDate);
@@ -69,14 +64,21 @@ public class LoanBook extends JFrame implements ActionListener
             public void actionPerformed(ActionEvent e) {
                 setLoanDate(fieldLoanDate.getText());
                 setReturnDate(fieldReturnDate.getText());
-                int n1 = Integer.parseInt(fieldIdBook.getText());
-                setIdBook(n1);
-                int n2 = Integer.parseInt(fieldIdUser.getText());
-                setIdUser(n2);
+                setIdBook(fieldIdBook.getText());
+                setIdUser(fieldIdUser.getText());
+                register();
             }
         });
     }
-
+        public void register()
+        {
+            registerArq = "/"+"/"+getLoanDate()+"/"+getReturnDate();
+            if(DataManipulation.Write("/home/kamila/IdeaProjects/Biblioteca/src/main/java/Banco/LoanBook.txt", registerArq))
+                System.out.println("deu ceto");
+            else
+                System.out.println("falhou");
+            new Menu();
+        }
 
     public String getLoanDate() {
         return loanDate;
@@ -94,19 +96,19 @@ public class LoanBook extends JFrame implements ActionListener
         this.returnDate = returnDate;
     }
 
-    public int getIdBook() {
+    public String getIdBook() {
         return idBook;
     }
 
-    public void setIdBook(int idBook) {
+    public void setIdBook(String idBook) {
         this.idBook = idBook;
     }
 
-    public int getIdUser() {
+    public String getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
 }

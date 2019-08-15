@@ -1,27 +1,14 @@
 package src;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-@Entity
-class RegisterBook extends JFrame implements ActionListener {
+class RegisterBook extends JFrame{
 
-    @Id
-    @GeneratedValue
-    private long id;
-
-    private String nameBook, author, edition, publication, category;
-    private int copies;
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        new RegisterBook();
-    }
+    private String registerArq;
+    private String nameBook, author, edition, publication, category, copies, idBook;
 
     JTextField fieldName = new JTextField(10);
     JTextField fieldAuthor = new JTextField(10);
@@ -29,6 +16,7 @@ class RegisterBook extends JFrame implements ActionListener {
     JTextField fieldPublication = new JTextField(10);
     JTextField fieldCategory = new JTextField(10);
     JTextField fieldCopies = new JTextField(10);
+    JTextField fieldIdBook = new JTextField(10);
 
     JLabel textName = new JLabel("Nome do Livro: ");
     JLabel textAuthor = new JLabel("Nome do Autor: ");
@@ -36,6 +24,7 @@ class RegisterBook extends JFrame implements ActionListener {
     JLabel textPublication = new JLabel("Publicação: ");
     JLabel textCategory = new JLabel("Categoria: ");
     JLabel textCopies = new JLabel("Número de Exemplares: ");
+    JLabel textIdBook = new JLabel("ID para o Livro: ");
 
     JButton buttonInput = new JButton("Finalizar");
 
@@ -69,6 +58,9 @@ class RegisterBook extends JFrame implements ActionListener {
         textCopies.setBounds(100,230,120,30);
         fieldCopies.setBounds(200,230,120,30);
 
+        textIdBook.setBounds(100,260,120,30);
+        fieldIdBook.setBounds(200,260,120,30);
+
         buttonInput.setBounds(200,350,210,30);
 
         add(textName);
@@ -83,6 +75,8 @@ class RegisterBook extends JFrame implements ActionListener {
         add(fieldCategory);
         add(textCopies);
         add(fieldCopies);
+        add(textIdBook);
+        add(fieldIdBook);
 
         add(buttonInput);
 
@@ -95,10 +89,20 @@ class RegisterBook extends JFrame implements ActionListener {
                 setEdition(fieldEdition.getText());
                 setPublication(fieldPublication.getText());
                 setCategory(fieldCategory.getText());
-                int n = Integer.parseInt(textCopies.getText());
-                setCopies(n);
+                setCopies(fieldCopies.getText());
+                setIdBook(fieldIdBook.getText());
+                register();
             }
         });
+    }
+    public void register()
+    {
+        registerArq = getIdBook() +"/"+getAuthor()+"/"+ getNameBook()+"/"+getEdition()+"/"+getPublication()+"/"+getCategory()+"/"+getCopies();
+        if(DataManipulation.Write("/home/kamila/IdeaProjects/Biblioteca/src/main/java/Banco/RegisterBook.txt", registerArq))
+            System.out.println("deu ceto");
+        else
+            System.out.println("falhou");
+        new Menu();
     }
 
 
@@ -142,11 +146,19 @@ class RegisterBook extends JFrame implements ActionListener {
         this.category = category;
     }
 
-    public int getCopies() {
+    public String getCopies() {
         return copies;
     }
 
-    public void setCopies(int copies) {
+    public void setCopies(String copies) {
         this.copies = copies;
+    }
+
+    public String getIdBook() {
+        return idBook;
+    }
+
+    public void setIdBook(String idBook) {
+        this.idBook = idBook;
     }
 }

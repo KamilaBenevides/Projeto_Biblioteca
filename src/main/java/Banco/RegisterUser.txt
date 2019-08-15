@@ -1,0 +1,3 @@
+IdUser/nameUser/institution/fines/numberBook
+01/kamila/ufal/2,4/3
+/mila/ufal///
