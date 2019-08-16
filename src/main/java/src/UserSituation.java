@@ -65,17 +65,16 @@ public class UserSituation extends JFrame
 
         JLabel line2 = new JLabel("linhas");
         int flag = 0, loop, i;
-        for(loop = 1, i = 0 ; loop < 50 ; loop++)//Loop para procurar o usuario na tabela de emprestimo e pegar o ID do livro
-        {
-            if(tableLoan[loop][1].equals(getIdInput()))// ERRO
-            {
+        for(loop = 1, i = 0 ; tableLoan[loop][1] != null ; loop++){//Loop para procurar o usuario na tabela de emprestimo e pegar o ID do livro
+            //System.out.println("DEGUG: "+tableLoan[loop][1]);
+            if(tableLoan[loop][1].equals(getIdInput())){// ERRO
                 idBookLoan[i] = tableLoan[loop][1];
                 flag = 1;
                 i++;
             }
         }
         if(flag == 1){
-            for(loop = 1 ; loop < 49 ; loop++)//Loop para procurar o nome do livro
+            for(loop = 1 ; tableBook[loop][0] != null; loop++)//Loop para procurar o nome do livro
             {
                 for(i = 0 ; i < 50 ; i++) {
                     if(tableBook[loop][0].equals(idBookLoan[i])) {
@@ -99,9 +98,9 @@ public class UserSituation extends JFrame
 
         //Posições - pos horizontal, pos vertical, largura, altura
         pendingTitle.setBounds(120,80,300,30);
-        line1.setBounds(120,100,100,30);
+        line1.setBounds(120,100,200,30);
         accumulatedFines.setBounds(300,80,300,30);
-        line2.setBounds(300,100,10,30);
+        line2.setBounds(300,100,200,30);
 
 
         window.add(pendingTitle);
