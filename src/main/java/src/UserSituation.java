@@ -56,37 +56,49 @@ public class UserSituation extends JFrame
     {
         String linesBook = "", linesFines;
         String idBookLoan[] = new String[50];
+        String lines[][] = new String[50][2];
+        String[] column = {"Títulos Pendêntes", "Multas Acumuladas"};
+        int k = 0;
 
         //Usar as tabelas/matrizes tableLoan e tableUser
 
         JFrame window = new JFrame();
-        JLabel pendingTitle = new JLabel("Títulos Pendêntes");
-        JLabel accumulatedFines = new JLabel("Multas Acumuladas");
 
-        JLabel line2 = new JLabel("linhas");
         int flag = 0, loop, i;
         for(loop = 1, i = 0 ; tableLoan[loop][1] != null ; loop++){//Loop para procurar o usuario na tabela de emprestimo e pegar o ID do livro
             //System.out.println("DEGUG: "+tableLoan[loop][1]);
-            if(tableLoan[loop][1].equals(getIdInput())){// ERRO
-                idBookLoan[i] = tableLoan[loop][1];
+            if(tableLoan[loop][1].equals(getIdInput())){
+                idBookLoan[i] = tableLoan[loop][0];
                 flag = 1;
                 i++;
             }
         }
-        if(flag == 1){
-            for(loop = 1 ; tableBook[loop][0] != null; loop++)//Loop para procurar o nome do livro
-            {
-                for(i = 0 ; i < 50 ; i++) {
+        if(flag == 1){ // PRECISA DE DUAS FLAGS UMA PARA OS TITULOS E OUTRA PARA AS MULTAS
+            for(loop = 1 ; tableBook[loop][0] != null; loop++){//Loop para procurar o nome do livro
+                for(i = 0 ; idBookLoan[i] != null ; i++) {
+                    System.out.println("tableBook: "+tableBook[loop][0]+" idBookLoan: "+idBookLoan[i]);
                     if(tableBook[loop][0].equals(idBookLoan[i])) {
-                        linesBook += tableBook[loop][1]+"\n";
+                        lines[k][0] = tableBook[loop][1];
+                        //System.out.println("lines: "+lines[k][0]+" tableBook: "+tableBook[loop][1]);
+                        k++;
                     }
+                }
+            }
+            for(loop = 1 ; tableBook[loop][0] != null; loop++){//Loop para procurar a multa
+                if(tableUser[loop][0].equals(getIdInput())) {
+                    lines[0][1] = tableUser[loop][3];
                 }
             }
         }
         else{
-            linesBook = "Sem livros emprestados";
+            lines[0][0] = "Sem livros emprestados";
+            lines[0][1] = "Sem multas";
         }
-        JLabel line1 = new JLabel(linesBook);
+        JButton buttonInput = new JButton("Finalizar");
+        buttonInput.setBounds(200,350,210,30);
+        JTable listEstados = new JTable(lines, column);
+        JScrollPane scrollpane = new JScrollPane(listEstados);
+        window.getContentPane().add(scrollpane);
         //Config das janelas
         window.setTitle("Sistema de Biblioteca");
         window.setSize(600, 500);
@@ -95,18 +107,10 @@ public class UserSituation extends JFrame
         window.setVisible(true);
         //configuração de Layout
         window.setLayout(null);
+        window.add(buttonInput);
 
         //Posições - pos horizontal, pos vertical, largura, altura
-        pendingTitle.setBounds(120,80,300,30);
-        line1.setBounds(120,100,200,30);
-        accumulatedFines.setBounds(300,80,300,30);
-        line2.setBounds(300,100,200,30);
 
-
-        window.add(pendingTitle);
-        window.add(accumulatedFines);
-        window.add(line1);
-        window.add(line2);
 
     }
     public void returnTextBook()

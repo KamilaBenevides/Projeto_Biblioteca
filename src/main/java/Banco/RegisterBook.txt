@@ -1,2 +1,2 @@
 idBook/nameBook/author/edition/publication/category/copies
-002/stwart/calculo1/9/sao paulo,2013/morte/3
+1/calculo 1/james/9/são paulo, 2018/sofrimento/3
