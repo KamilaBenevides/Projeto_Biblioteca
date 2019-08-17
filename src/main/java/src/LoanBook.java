@@ -34,17 +34,17 @@ public class LoanBook extends JFrame
         setVisible(true);
 
         //Posições - pos horizontal, pos vertical, largura, altura
-        textLoanDate.setBounds(100, 170, 120, 30);
-        fieldLoanDate.setBounds(210, 170, 120, 30);
+        textIdBook.setBounds(100, 170, 120, 30);
+        fieldIdBook.setBounds(210, 170, 120, 30);
 
-        textReturnDate.setBounds(100, 200, 120, 30);
-        fieldReturnDate.setBounds(210, 200, 120, 30);
+        textIdUser.setBounds(100, 200, 120, 30);
+        fieldIdUser.setBounds(210, 200, 120, 30);
 
-        textIdBook.setBounds(100, 230, 120, 30);
-        fieldIdBook.setBounds(200, 230, 120, 30);
+        textLoanDate.setBounds(100, 230, 120, 30);
+        fieldLoanDate.setBounds(200, 230, 120, 30);
 
-        textIdUser.setBounds(100, 230, 140, 30);
-        fieldIdUser.setBounds(200, 230, 140, 30);
+        textReturnDate.setBounds(100, 260, 140, 30);
+        fieldReturnDate.setBounds(200, 260, 140, 30);
 
         buttonInput.setBounds(200, 350, 210, 30);
 
@@ -72,12 +72,17 @@ public class LoanBook extends JFrame
     }
         public void register()
         {
-            registerArq = "/"+"/"+getLoanDate()+"/"+getReturnDate();
-            if(DataManipulation.Write("/home/kamila/IdeaProjects/Biblioteca/src/main/java/Banco/LoanBook.txt", registerArq))
-                System.out.println("deu ceto");
-            else
-                System.out.println("falhou");
-            new Menu();
+            if(CheckID.checkedExistBook(idBook) && CheckID.checkedExistUser(idUser)) {
+                registerArq = getIdBook() + "/" + getIdUser() + "/" + getLoanDate() + "/" + getReturnDate();
+                if (DataManipulation.Write("/home/kamila/IdeaProjects/Biblioteca/src/main/java/Banco/LoanBook.txt", registerArq))
+                    System.out.println("deu ceto");
+                else
+                    System.out.println("falhou");
+                new Menu();
+            }
+            else{
+                System.out.println("encontrou erro");
+            }
         }
 
     public String getLoanDate() {

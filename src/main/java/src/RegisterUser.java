@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
 public class RegisterUser extends JFrame
 {
     private String registerArq;
-    private String nameUser, institution, numberBook, fines;
-    private static int sequence = 1, idUser;
+    private String nameUser, institution, numberBook, fines, idAux;
+    private int idUser;
 
     JTextField fieldUser = new JTextField(10);
     JTextField fieldId = new JTextField(10);
@@ -47,24 +47,31 @@ public class RegisterUser extends JFrame
         add(textInstitution);
         add(fieldInstitution);
         add(buttonInput);
+        idAux = DataManipulation.Read("/home/kamila/IdeaProjects/Biblioteca/src/main/java/Banco/iduser.txt");
+        idUser = Integer.parseInt(idAux.substring(1,2));
+        idUser++;
         //Ação do botão
         buttonInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setNameUser(fieldUser.getText());
-                setIdUser(sequence++);
+                setIdUser(idUser);
                 setInstitution(fieldInstitution.getText());
                 register();
             }
         });
+        idAux = Integer.toString(idUser);
+        DataManipulation.readID("/home/kamila/IdeaProjects/Biblioteca/src/main/java/Banco/iduser.txt", idAux);
     }
     public void register()
     {
-        registerArq = "/"+getNameUser()+"/"+getInstitution()+"/"+"/"+"/";
-        if(DataManipulation.Write("/home/kamila/IdeaProjects/Biblioteca/src/main/java/Banco/RegisterUser.txt", registerArq))
+
+        registerArq = getIdUser() + "/" + getNameUser() + "/" + getInstitution();
+        if (DataManipulation.Write("/home/kamila/IdeaProjects/Biblioteca/src/main/java/Banco/RegisterUser.txt", registerArq))
             System.out.println("deu ceto");
         else
             System.out.println("falhou");
+
         new Menu();
     }
 

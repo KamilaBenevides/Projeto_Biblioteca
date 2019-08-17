@@ -1,3 +1,2 @@
-IdUser/nameUser/institution/fines/numberBook
-01/kamila/ufal/2,4/3
-/mila/ufal///
+IdUser/nameUser/institution
+1/kamila/ufal

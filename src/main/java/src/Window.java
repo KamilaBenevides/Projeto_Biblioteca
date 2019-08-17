@@ -20,38 +20,24 @@ public class Window {
 */
 package src;
 import java.awt.*;
+import java.io.*;
 import javax.swing.*;
 
-public class Window extends JFrame{
-
-    //define a tabela como tendo 3 colunas
-    String[] coluna = {"Nome", "Cidade", "Estado"};
-
-    //os dados que serão exibidos na tabela
-    //a tabela possuirá o cabeçalho e 4 linhas
-    String[][] dados = {{"Eduardo Jorge", "Salvador", "Bahia"},
-            {"Gustavo Neves", "Caetité", "Bahia"},
-            {"Tarcísio Araújo", "Mutuípe", "Bahia"},
-            {"Rafael", "Campinas", "São Paulo"}};
-    //Passe os arrays como parâmetro no construtor
-    //e o JTable define o seu modelo de acordo o
-    //array de coluna e o de dados
-    private JTable listEstados = new JTable(dados, coluna);
-    private JScrollPane scrollpane = new JScrollPane(listEstados);
-
-    public Window(){
-        super("JTABLE");
-
-        this.getContentPane().add(scrollpane);
-
-
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(310, 150);
-        this.setVisible(true);
-
-    }
-
-    public static void main(String[] args){
-        Window exemplo = new Window();
+public class Window{
+    public static void main(String[] args) {
+        File arquivo = new File("/home/kamila/IdeaProjects/Biblioteca/src/main/java/Banco/iduser.txt");
+        try {
+            if (!arquivo.exists()) {
+                arquivo.createNewFile();
+            }
+            FileWriter fw = new FileWriter(arquivo, false);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("2"); //mudar isso
+            bw.newLine();
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }

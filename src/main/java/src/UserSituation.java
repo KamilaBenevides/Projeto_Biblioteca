@@ -56,8 +56,8 @@ public class UserSituation extends JFrame
     {
         String linesBook = "", linesFines;
         String idBookLoan[] = new String[50];
-        String lines[][] = new String[50][2];
-        String[] column = {"Títulos Pendêntes", "Multas Acumuladas"};
+        String lines[][] = new String[50][1];
+        String[] column = {"Títulos Pendêntes"};
         int k = 0;
 
         //Usar as tabelas/matrizes tableLoan e tableUser
@@ -73,26 +73,18 @@ public class UserSituation extends JFrame
                 i++;
             }
         }
-        if(flag == 1){ // PRECISA DE DUAS FLAGS UMA PARA OS TITULOS E OUTRA PARA AS MULTAS
+        if(flag == 1){
             for(loop = 1 ; tableBook[loop][0] != null; loop++){//Loop para procurar o nome do livro
                 for(i = 0 ; idBookLoan[i] != null ; i++) {
-                    System.out.println("tableBook: "+tableBook[loop][0]+" idBookLoan: "+idBookLoan[i]);
                     if(tableBook[loop][0].equals(idBookLoan[i])) {
                         lines[k][0] = tableBook[loop][1];
-                        //System.out.println("lines: "+lines[k][0]+" tableBook: "+tableBook[loop][1]);
                         k++;
                     }
-                }
-            }
-            for(loop = 1 ; tableBook[loop][0] != null; loop++){//Loop para procurar a multa
-                if(tableUser[loop][0].equals(getIdInput())) {
-                    lines[0][1] = tableUser[loop][3];
                 }
             }
         }
         else{
             lines[0][0] = "Sem livros emprestados";
-            lines[0][1] = "Sem multas";
         }
         JButton buttonInput = new JButton("Finalizar");
         buttonInput.setBounds(200,350,210,30);

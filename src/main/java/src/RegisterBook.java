@@ -4,12 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 class RegisterBook extends JFrame{
 
     private String registerArq;
-    private String nameBook, author, edition, publication, category, copies;
-    private int sequence = 1, idBook;
+    private String nameBook, author, edition, publication, category, copies, idAux;
+    private int idBook;
+
 
     JTextField fieldName = new JTextField(10);
     JTextField fieldAuthor = new JTextField(10);
@@ -29,8 +33,7 @@ class RegisterBook extends JFrame{
 
     Font fonte = new Font("Arial", Font.BOLD, 20);
 
-    public RegisterBook()
-    {
+    public RegisterBook(){
         // Config das janelas
         setLayout(null);
         setTitle("Sistema de Biblioteca");
@@ -71,8 +74,10 @@ class RegisterBook extends JFrame{
         add(fieldCategory);
         add(textCopies);
         add(fieldCopies);
-
         add(buttonInput);
+        idAux = DataManipulation.Read("/home/kamila/IdeaProjects/Biblioteca/src/main/java/Banco/idBook.txt");
+        idBook = Integer.parseInt(idAux.substring(1,2));
+        idBook++;
 
         //Ação do botão
         buttonInput.addActionListener(new ActionListener() {
@@ -84,10 +89,12 @@ class RegisterBook extends JFrame{
                 setPublication(fieldPublication.getText());
                 setCategory(fieldCategory.getText());
                 setCopies(fieldCopies.getText());
-                setIdBook(sequence++);
+                setIdBook(idBook);
                 register();
             }
         });
+        idAux = Integer.toString(idBook);
+        DataManipulation.readID("/home/kamila/IdeaProjects/Biblioteca/src/main/java/Banco/idBook.txt", idAux);
     }
     public void register()
     {

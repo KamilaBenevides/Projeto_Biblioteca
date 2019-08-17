@@ -42,4 +42,22 @@ public class DataManipulation
             return false;
         }
     }
+    public static void readID(String Banco, String i)
+    {
+        File arquivo = new File(Banco);
+        try {
+            if (!arquivo.exists()) {
+                arquivo.createNewFile();
+            }
+            FileWriter fw = new FileWriter(arquivo, false);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(i);
+            bw.newLine();
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 }
