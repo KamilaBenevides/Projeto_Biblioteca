@@ -42,23 +42,23 @@ class RegisterBook extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
         //Posições - pos horizontal, pos vertical, largura, altura
-        textName.setBounds(100,80,120,30);
-        fieldName.setBounds(210,80,120,30);
+        textName.setBounds(100,80,200,30);
+        fieldName.setBounds(300,80,120,30);
 
-        textAuthor.setBounds(100,110,120,30);
-        fieldAuthor.setBounds(210,110,120,30);
+        textAuthor.setBounds(100,110,200,30);
+        fieldAuthor.setBounds(300,110,120,30);
 
-        textEdition.setBounds(150,140,120,30);
-        fieldEdition.setBounds(210,140,120,30);
+        textEdition.setBounds(150,140,200,30);
+        fieldEdition.setBounds(300,140,120,30);
 
-        textPublication.setBounds(100,170,120,30);
-        fieldPublication.setBounds(210,170,120,30);
+        textPublication.setBounds(100,170,200,30);
+        fieldPublication.setBounds(300,170,120,30);
 
-        textCategory.setBounds(100,200,120,30);
-        fieldCategory.setBounds(210,200,120,30);
+        textCategory.setBounds(100,200,200,30);
+        fieldCategory.setBounds(300,200,120,30);
 
-        textCopies.setBounds(100,230,120,30);
-        fieldCopies.setBounds(200,230,120,30);
+        textCopies.setBounds(100,230,200,30);
+        fieldCopies.setBounds(300,230,120,30);
 
         buttonInput.setBounds(200,350,210,30);
 

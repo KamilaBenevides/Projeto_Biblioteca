@@ -34,17 +34,17 @@ public class LoanBook extends JFrame
         setVisible(true);
 
         //Posições - pos horizontal, pos vertical, largura, altura
-        textIdBook.setBounds(100, 170, 120, 30);
-        fieldIdBook.setBounds(210, 170, 120, 30);
+        textIdBook.setBounds(100, 170, 200, 30);
+        fieldIdBook.setBounds(300, 170, 140, 30);
 
-        textIdUser.setBounds(100, 200, 120, 30);
-        fieldIdUser.setBounds(210, 200, 120, 30);
+        textIdUser.setBounds(100, 200, 200, 30);
+        fieldIdUser.setBounds(300, 200, 140, 30);
 
-        textLoanDate.setBounds(100, 230, 120, 30);
-        fieldLoanDate.setBounds(200, 230, 120, 30);
+        textLoanDate.setBounds(100, 230, 200, 30);
+        fieldLoanDate.setBounds(300, 230, 140, 30);
 
-        textReturnDate.setBounds(100, 260, 140, 30);
-        fieldReturnDate.setBounds(200, 260, 140, 30);
+        textReturnDate.setBounds(100, 260, 200, 30);
+        fieldReturnDate.setBounds(300, 260, 140, 30);
 
         buttonInput.setBounds(200, 350, 210, 30);
 

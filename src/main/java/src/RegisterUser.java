@@ -34,11 +34,11 @@ public class RegisterUser extends JFrame
         setVisible(true);
 
         //Posições - pos horizontal, pos vertical, largura, altura
-        textUser.setBounds(100,200,120,30);
-        fieldUser.setBounds(210,200,120,30);
+        textUser.setBounds(100,200,200,30);
+        fieldUser.setBounds(250,200,120,30);
 
         textInstitution.setBounds(100,230,120,30);
-        fieldInstitution.setBounds(200,230,120,30);
+        fieldInstitution.setBounds(250,230,120,30);
 
         buttonInput.setBounds(200,350,210,30);
 
